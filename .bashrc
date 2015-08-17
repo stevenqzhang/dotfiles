@@ -1,5 +1,7 @@
 # fzf settings (mostly copied from @junegunn https://github.com/junegunn/dotfiles/blob/master/bashrc)
 # -------------------------
+
+
 #setup fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -123,7 +125,11 @@ fi
 
 
 # sublime as app
-export PATH=/usr/local/bin
+#set PATH $PATH=/usr/local/bin
 
 fi
 
+#for some reason this path needs to be added (similar bug: https://github.com/junegunn/fzf/issues/309)
+# I probably havesome stuff above that overwrites the PATH variable...
+# this is a hack for now
+export PATH=~/.fzf/bin:$PATH
