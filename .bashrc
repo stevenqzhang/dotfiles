@@ -1,5 +1,47 @@
+# fzf settings (mostly copied from @junegunn https://github.com/junegunn/dotfiles/blob/master/bashrc)
+# -------------------------
 #setup fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# fd - cd to selected directory (I use fzf; original uses fzf-tmux)
+fd() {
+  DIR=`find ${1:-*} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf` \
+    && cd "${DIR}"
+}
+
+# fda - including hidden directories
+fda() {
+  DIR=`find ${1:-.} -type d 2> /dev/null | fzf` && cd "${DIR}"
+}
+
+#inspired by fd, but uses mdfind on mac = faster 
+#braces are essential
+md() {
+  DIR=`mdfind "kind:folder" -name  2> /dev/null | fzf` && cd "${DIR}"
+}
+
+# opens files
+mo() {
+  FILE=`mdfind -name . 2> /dev/null | fzf` \
+    && open "${FILE}"
+}
+
+# searches contents of files too
+mfind() {
+  FILE=`mdfind . 2> /dev/null | fzf` \
+    && open "$FILE"
+}
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local file
+  file=$(fzf-tmux --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && ${EDITOR:-vim} "$file"
+}
+
+#TODO git too show up in prompt too see junegunn
 
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -66,6 +108,8 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
 	      . $(brew --prefix)/etc/bash_completion
 fi
+
+
 
 # sublime as app
 export PATH=/usr/local/bin
