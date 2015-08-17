@@ -1,3 +1,6 @@
+#setup fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 #
@@ -14,7 +17,7 @@ alias ga='git add -u'
 #cd aliases
 alias ..='cd ..'
 #
-#alias init=source ~/.bashrc
+alias init='source ~/dev/dotfiles/.bashrc'
 alias ls='ls -GFh'
 
 alias grep='grep --color=always'
