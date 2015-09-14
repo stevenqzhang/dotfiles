@@ -68,6 +68,8 @@ alias gs='git status --untracked-files=no'
 alias gk='gitk --all &'
 alias gb='git branch'
 alias ga='git add -u'
+alias please='sudo' #courtesy of https://twitter.com/starsandrobots/status/380857763733073920
+
 #
 #cd aliases
 alias ..='cd ..'
