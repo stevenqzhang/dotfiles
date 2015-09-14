@@ -19,29 +19,29 @@ fda() {
 #inspired by fd, but uses mdfind on mac = faster 
 #braces are essential
 mdf() {
-  DIR=`mdfind "kind:folder" -name  2> /dev/null | fzf` && cd "${DIR}"
+  DIR=$(mdfind "kind:folder" -name  2> /dev/null | fzf) && cd "${DIR}"
 }
 
 #no fuzzy option
 md() {
-  DIR=`mdfind "kind:folder" -name  2> /dev/null | fzf -e` && cd "${DIR}"
+  DIR=$(mdfind "kind:folder" -name  2> /dev/null | fzf -e) && cd "${DIR}"
 }
 
 # opens files
 mof() {
-  FILE=`mdfind -name . 2> /dev/null | fzf` \
+  FILE=$(mdfind -name . 2> /dev/null | fzf) \
     && open "${FILE}"
 }
 
 #no fuzzy option
 mo() {
-  FILE=`mdfind -name . 2> /dev/null | fzf -e` \
+  FILE=$(mdfind -name . 2> /dev/null | fzf -e) \
     && open "${FILE}"
 }
 
 # searches contents of files too
 mfind() {
-  FILE=`mdfind . 2> /dev/null | fzf` \
+  FILE=$(mdfind . 2> /dev/null | fzf) \
     && open "$FILE"
 }
 
