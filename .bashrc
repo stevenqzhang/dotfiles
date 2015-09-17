@@ -70,6 +70,11 @@ alias gb='git branch'
 alias ga='git add -u'
 alias please='sudo' #courtesy of https://twitter.com/starsandrobots/status/380857763733073920
 
+# we use this instead of subl because of casks's directory structure
+# http://alittlecode.com/2013/10/open-a-file-in-sublime-text-via-os-x-terminal/
+alias sublime='open -a Sublime\ Text'
+alias e='sublime'
+
 #
 #cd aliases
 alias ..='cd ..'
