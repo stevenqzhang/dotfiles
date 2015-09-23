@@ -87,7 +87,9 @@ alias grep='grep --color=always'
 #windows and bash differ with open vs start, I always get confused
 alias start='open'
 
-#
+# Rename command prompt
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+
 # Set the PS1 prompt (with colors).
 # Based on http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
 # And http://networking.ringofsaturn.com/Unix/Bash-prompts.php .
