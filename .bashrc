@@ -75,10 +75,11 @@ alias please='sudo' #courtesy of https://twitter.com/starsandrobots/status/38085
 alias sublime='open -a Sublime\ Text'
 alias e='sublime'
 
-#
 #cd aliases
 alias ..='cd ..'
-#
+alias ...='cd ...'
+alias ....='cd ....'
+
 alias init='source ~/dev/dotfiles/.bashrc'
 alias ls='ls -GFh'
 
