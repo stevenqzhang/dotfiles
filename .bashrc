@@ -88,6 +88,9 @@ alias grep='grep --color=always'
 #windows and bash differ with open vs start, I always get confused
 alias start='open'
 
+#courtsey of http://stackoverflow.com/questions/2957684/awk-access-captured-group-from-line-pattern
+function regex { gawk 'match($0,/'$1'/, ary) {print ary['${2:-'0'}']}'; }
+
 # Rename command prompt
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 
@@ -143,3 +146,9 @@ fi
 # I probably havesome stuff above that overwrites the PATH variable...
 # this is a hack for now
 export PATH=~/.fzf/bin:$PATH
+
+#Reminder for myself to annotate my bash history as an experiment if that can work for documentation
+RED='\033[0;31m'
+printf "${RED}REMINDER 150930: annotate important commands in bash history\n"
+printf "i.e. $ #this is a comment about this command; command\n"
+
