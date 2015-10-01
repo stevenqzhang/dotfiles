@@ -78,7 +78,10 @@ alias e='sublime'
 #cd aliases
 alias ..='cd ..'
 alias ...='cd ...'
-alias ....='cd ....'
+alias ....='cd ....'i
+
+# sd stands for switch dir
+alias sd='cd -'
 
 alias init='source ~/dev/dotfiles/.bashrc'
 alias ls='ls -GFh'
