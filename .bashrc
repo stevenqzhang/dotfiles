@@ -78,18 +78,20 @@ alias e='sublime'
 #cd aliases
 alias ..='cd ..'
 alias ...='cd ...'
-alias ....='cd ....'i
+alias ....='cd ....'
 
 # sd stands for switch dir
 alias sd='cd -'
-
 alias init='source ~/dev/dotfiles/.bashrc'
 alias ls='ls -GFh'
-
 alias grep='grep --color=always'
 
 #windows and bash differ with open vs start, I always get confused
 alias start='open'
+
+#use ctrl keys to move forward and back in words
+bind '"\eOC":forward-word'
+bind '"\eOD":backward-word'
 
 #courtsey of http://stackoverflow.com/questions/2957684/awk-access-captured-group-from-line-pattern
 function regex { gawk 'match($0,/'$1'/, ary) {print ary['${2:-'0'}']}'; }
@@ -138,12 +140,12 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 	      . $(brew --prefix)/etc/bash_completion
 fi
 
+fi
 
-
+# Path variable changes
 # sublime as app
 #set PATH $PATH=/usr/local/bin
-
-fi
+export PATH=~/anaconda/bin:$PATH
 
 #for some reason this path needs to be added (similar bug: https://github.com/junegunn/fzf/issues/309)
 # I probably havesome stuff above that overwrites the PATH variable...
