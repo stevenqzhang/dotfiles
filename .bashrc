@@ -89,7 +89,7 @@ alias grep='grep --color=always'
 #windows and bash differ with open vs start, I always get confused
 alias start='open'
 
-#use ctrl keys to move forward and back in words
+#use ctrl keys to move forward and back in words (at least in OS X)
 bind '"\e[1;5D":backward-word'
 bind '"\e[1;5C":forward-word'
 
