@@ -39,6 +39,19 @@ mo() {
     && open "${FILE}"
 }
 
+# copy file path to clipboard
+#newline must be stripped http://stackoverflow.com/questions/12524308/bash-strip-trailing-linebreak-from-output
+mpf() {
+  FILE=$(mdfind -name . 2> /dev/null | fzf) \
+    && echo "${FILE}" | tr -d '\n' | pbcopy
+}
+
+# copy file path to clipboard, no fuzzy
+mp() {
+  FILE=$(mdfind -name . 2> /dev/null | fzf -e) \
+    && echo "${FILE}" | tr -d '\n' | pbcopy
+}
+
 # searches contents of files too
 mfind() {
   FILE=$(mdfind . 2> /dev/null | fzf) \
@@ -65,6 +78,7 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 alias gcm='git commit -m'
 alias gca='git commit --amend'
 alias gs='git status --untracked-files=no'
+alias gd='git diff'
 alias gk='gitk --all &'
 alias gb='git branch'
 alias ga='git add -u'
