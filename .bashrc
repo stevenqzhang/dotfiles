@@ -86,8 +86,8 @@ alias gl="git log --graph --abbrev-commit --decorate --date=relative --format=fo
 alias gl2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 
 alias please='sudo' #courtesy of https://twitter.com/starsandrobots/status/380857763733073920
-
-
+#alias brew='sudo brew' #160118 i always forget sudo for brew
+alias bci='brew cask install'
 
 # we use this instead of subl because of casks's directory structure
 # http://alittlecode.com/2013/10/open-a-file-in-sublime-text-via-os-x-terminal/
