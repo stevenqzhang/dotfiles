@@ -1,6 +1,8 @@
 # fzf settings (mostly copied from @junegunn https://github.com/junegunn/dotfiles/blob/master/bashrc)
 # -------------------------
 
+#mac settings
+unamestr=`uname`
 
 #setup fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -108,6 +110,16 @@ alias grep='grep --color=always'
 #windows and bash differ with open vs start, I always get confused
 alias start='open'
 
+
+#rm aliases to prevent accidental deletion http://apple.stackexchange.com/questions/17622/how-can-i-make-rm-move-files-to-the-trash-can
+if [[ "$unamestr" == 'Darwin' ]]; then
+alias trash="rmtrash"
+alias del="rmtrash"
+alias rmt="rmtrash"
+alias rm="echo Use del, or the full path i.e. /bin/rm"
+fi
+
+
 #python aliases
 alias nt='nosetests --with-timer'
 #use ctrl keys to move forward and back in words (at least in OS X)
@@ -151,8 +163,6 @@ export HISTFILE=$HOME/Dropbox/dev/bash_eternal_history_all.txt
 
 PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 
-unamestr=uname
-
 # Mac specifics
 if [[ "$unamestr" == 'Darwin' ]]; then
 
@@ -175,6 +185,6 @@ export PATH=~/.fzf/bin:$PATH
 
 #Reminder for myself to annotate my bash history as an experiment if that can work for documentation
 RED='\033[0;31m'
-printf "${RED}REMINDER 150930: annotate important commands in bash history\n"
+printf "${RED}REMINDER: annotate important commands in bash history\n"
 printf "i.e. $ #this is a comment about this command; command\n"
 
