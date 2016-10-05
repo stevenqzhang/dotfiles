@@ -105,7 +105,13 @@ alias ....='cd ....'
 alias sd='cd -'
 alias init='source ~/dev/dotfiles/.bashrc'
 alias ls='ls -GFh'
-alias grep='grep --color=always'
+alias grep='grep --color=always' 
+
+# for unblocking freedom
+if [[ "$unamestr" == 'Darwin' ]]; then
+alias ps="echo use ps full path to kill freedom"
+alias kill="do you really need to kill freedom?"
+fi
 
 #windows and bash differ with open vs start, I always get confused
 alias start='open'
@@ -177,6 +183,7 @@ fi
 # sublime as app
 #set PATH $PATH=/usr/local/bin
 export PATH=~/anaconda/bin:$PATH
+export PATH=~/anaconda3/bin:$PATH
 
 #for some reason this path needs to be added (similar bug: https://github.com/junegunn/fzf/issues/309)
 # I probably havesome stuff above that overwrites the PATH variable...
