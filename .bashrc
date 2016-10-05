@@ -190,6 +190,9 @@ export PATH=~/anaconda3/bin:$PATH
 # this is a hack for now
 export PATH=~/.fzf/bin:$PATH
 
+#add dev/scripts/bin to PATH
+export PATH=~/Dropbox/dev/scripts/bin:$PATH
+
 #Reminder for myself to annotate my bash history as an experiment if that can work for documentation
 RED='\033[0;31m'
 printf "${RED}REMINDER: annotate important commands in bash history\n"
