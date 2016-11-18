@@ -144,6 +144,11 @@ function regex { gawk 'match($0,/'$1'/, ary) {print ary['${2:-'0'}']}'; }
 
 # Rename command prompt
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+if [[ "$unamestr" == 'Darwin' ]]; then
+  export PROMPT_COMMAND='echo -ne "\033]0;🍎${PWD/#$HOME/~}\007"'
+elif [[ "$unamestr" == 'Linux' ]]; then
+  export PROMPT_COMMAND='echo -ne "\033]0;🐧${PWD/#$HOME/~}\007"'
+fi
 
 # Set the PS1 prompt (with colors).
 # Based on http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
