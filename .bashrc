@@ -153,9 +153,14 @@ fi
 # Set the PS1 prompt (with colors).
 # Based on http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
 # And http://networking.ringofsaturn.com/Unix/Bash-prompts.php .
-#PS1="\[\e[36;1m\]\h:\[\e[32;1m\]\w$ \[\e[0m\]" #disabled b/c doesn't work on windows
-export PS1="\[\e[00;33m\]\u\[\e[0m\]\[\e[00;37m\]@\h:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \D{%T} \n$ "
-# 
+# http://ezprompt.net/
+if [[ "$unamestr" == 'Darwin' ]]; then
+  export PS1="\[\e[00;33m\]\u\[\e[0m\]\[\e[00;37m\]@\h:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \D{%T} \n$ "
+elif [[ "$unamestr" == 'Linux' ]]; then
+  #extremely different colors for linux so I don't confuse myself when SSH'ing
+  export PS1="\[\e[00;32m\] 🐧 \u\[\e[0m\]\[\e[00;45m\]@\h:\[\e[0m\]\[\e[00;31m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \D{%T} \n$ "
+fi
+
 # Set the default editor to vim.
 export EDITOR=vim
 # 

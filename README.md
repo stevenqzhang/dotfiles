@@ -6,9 +6,15 @@ Add this line into ~\.bashrc
 
 ```
 git clone https://github.com/stevenqzhang/dotfiles.git ~/dev/dotfiles 
-echo source ~/dev/dotfiles/.bashrc >> ~/.bashrc && source ~/.bashrc
-echo source ~/.bashrc >> ~/.bash_profile
-echo source ~/dev/dotfiles/.vimrc >> ~/.vimrc
+LINE='source ~/dev/dotfiles/.bashrc'
+FILE=~/.bashrc
+grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+LINE='source ~/.bashrc'
+FILE=~/.bash_profile
+grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+LINE='source ~/dev/dotfiles/.vimrc'
+FILE=~/.vimrc
+grep -q "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 ```
 
 OR, run copy the one liner from this gist to wget it all at once: 
