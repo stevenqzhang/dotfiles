@@ -158,7 +158,7 @@ if [[ "$unamestr" == 'Darwin' ]]; then
   export PS1="\[\e[00;33m\]\u\[\e[0m\]\[\e[00;37m\]@\h:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \D{%T} \n$ "
 elif [[ "$unamestr" == 'Linux' ]]; then
   #extremely different colors for linux so I don't confuse myself when SSH'ing
-  export PS1="\[\e[00;32m\] 🐧 \u\[\e[0m\]\[\e[00;45m\]@\h:\[\e[0m\]\[\e[00;31m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \D{%T} \n$ "
+  export PS1="\[\e[00;32m\] 🐧 \u\[\e[0m\]\[\e[00;45m\]@\h:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \D{%T} \n$ "
 fi
 
 # Set the default editor to vim.
