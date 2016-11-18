@@ -7,58 +7,60 @@ unamestr=`uname`
 #setup fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# fd - cd to selected directory (I use fzf; original uses fzf-tmux)
-fd() {
-  DIR=`find ${1:-*} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf` \
-    && cd "${DIR}"
-}
+if [[ "$unamestr" == 'Darwin' ]]; then
+  # fd - cd to selected directory (I use fzf; original uses fzf-tmux)
+  fd() {
+    DIR=`find ${1:-*} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf` \
+      && cd "${DIR}"
+  }
 
-# fda - including hidden directories
-fda() {
-  DIR=`find ${1:-.} -type d 2> /dev/null | fzf` && cd "${DIR}"
-}
+  # fda - including hidden directories
+  fda() {
+    DIR=`find ${1:-.} -type d 2> /dev/null | fzf` && cd "${DIR}"
+  }
 
-#inspired by fd, but uses mdfind on mac = faster 
-#braces are essential
-mdf() {
-  DIR=$(mdfind "kind:folder" -name  2> /dev/null | fzf) && cd "${DIR}"
-}
+  #inspired by fd, but uses mdfind on mac = faster 
+  #braces are essential
+  mdf() {
+    DIR=$(mdfind "kind:folder" -name  2> /dev/null | fzf) && cd "${DIR}"
+  }
 
-#no fuzzy option
-md() {
-  DIR=$(mdfind "kind:folder" -name  2> /dev/null | fzf -e) && cd "${DIR}"
-}
+  #no fuzzy option
+  md() {
+    DIR=$(mdfind "kind:folder" -name  2> /dev/null | fzf -e) && cd "${DIR}"
+  }
 
-# opens files
-mof() {
-  FILE=$(mdfind -name . 2> /dev/null | fzf) \
-    && open "${FILE}"
-}
+  # opens files
+  mof() {
+    FILE=$(mdfind -name . 2> /dev/null | fzf) \
+      && open "${FILE}"
+  }
 
-#no fuzzy option
-mo() {
-  FILE=$(mdfind -name . 2> /dev/null | fzf -e) \
-    && open "${FILE}"
-}
+  #no fuzzy option
+  mo() {
+    FILE=$(mdfind -name . 2> /dev/null | fzf -e) \
+      && open "${FILE}"
+  }
 
-# copy file path to clipboard
-#newline must be stripped http://stackoverflow.com/questions/12524308/bash-strip-trailing-linebreak-from-output
-mpf() {
-  FILE=$(mdfind -name . 2> /dev/null | fzf) \
-    && echo "${FILE}" | tr -d '\n' | pbcopy
-}
+  # copy file path to clipboard
+  #newline must be stripped http://stackoverflow.com/questions/12524308/bash-strip-trailing-linebreak-from-output
+  mpf() {
+    FILE=$(mdfind -name . 2> /dev/null | fzf) \
+      && echo "${FILE}" | tr -d '\n' | pbcopy
+  }
 
-# copy file path to clipboard, no fuzzy
-mp() {
-  FILE=$(mdfind -name . 2> /dev/null | fzf -e) \
-    && echo "${FILE}" | tr -d '\n' | pbcopy
-}
+  # copy file path to clipboard, no fuzzy
+  mp() {
+    FILE=$(mdfind -name . 2> /dev/null | fzf -e) \
+      && echo "${FILE}" | tr -d '\n' | pbcopy
+  }
 
-# searches contents of files too
-mfind() {
-  FILE=$(mdfind . 2> /dev/null | fzf) \
-    && open "$FILE"
-}
+  # searches contents of files too
+  mfind() {
+    FILE=$(mdfind . 2> /dev/null | fzf) \
+      && open "$FILE"
+  }
+fi
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
@@ -89,12 +91,14 @@ alias gl2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold b
 
 alias please='sudo' #courtesy of https://twitter.com/starsandrobots/status/380857763733073920
 #alias brew='sudo brew' #160118 i always forget sudo for brew
-alias bci='brew cask install'
 
-# we use this instead of subl because of casks's directory structure
-# http://alittlecode.com/2013/10/open-a-file-in-sublime-text-via-os-x-terminal/
-alias sublime='open -a Sublime\ Text'
-alias e='sublime'
+if [[ "$unamestr" == 'Darwin' ]]; then
+  alias bci='brew cask install'
+  # we use this instead of subl because of casks's directory structure
+  # http://alittlecode.com/2013/10/open-a-file-in-sublime-text-via-os-x-terminal/
+  alias sublime='open -a Sublime\ Text'
+  alias e='sublime'
+fi
 
 #cd aliases
 alias ..='cd ..'
@@ -109,8 +113,8 @@ alias grep='grep --color=always'
 
 # for unblocking freedom
 if [[ "$unamestr" == 'Darwin' ]]; then
-alias ps="echo use ps full path to kill freedom"
-alias kill="do you really need to kill freedom?"
+  alias ps="echo use ps full path to kill freedom"
+  alias kill="do you really need to kill freedom?"
 fi
 
 #windows and bash differ with open vs start, I always get confused
@@ -119,18 +123,21 @@ alias start='open'
 
 #rm aliases to prevent accidental deletion http://apple.stackexchange.com/questions/17622/how-can-i-make-rm-move-files-to-the-trash-can
 if [[ "$unamestr" == 'Darwin' ]]; then
-alias trash="rmtrash"
-alias del="rmtrash"
-alias rmt="rmtrash"
-alias rm="echo Use del, or the full path i.e. /bin/rm"
+  alias trash="rmtrash"
+  alias del="rmtrash"
+  alias rmt="rmtrash"
+  alias rm="echo Use del, or the full path i.e. /bin/rm"
 fi
 
 
 #python aliases
 alias nt='nosetests --with-timer'
-#use ctrl keys to move forward and back in words (at least in OS X)
-bind '"\e[1;5D":backward-word'
-bind '"\e[1;5C":forward-word'
+
+if [[ "$unamestr" == 'Darwin' ]]; then
+  #use ctrl keys to move forward and back in words (at least in OS X)
+  bind '"\e[1;5D":backward-word'
+  bind '"\e[1;5C":forward-word'
+fi
 
 #courtsey of http://stackoverflow.com/questions/2957684/awk-access-captured-group-from-line-pattern
 function regex { gawk 'match($0,/'$1'/, ary) {print ary['${2:-'0'}']}'; }
@@ -163,7 +170,14 @@ export HISTSIZE=
 export HISTTIMEFORMAT="[%F %T] "
 # Change the file location because certain bash sessions truncate .bash_history file upon close.
 # http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
-export HISTFILE=$HOME/Dropbox/dev/bash_eternal_history_all.txt
+
+if [[ "$unamestr" == 'Darwin' ]]; then
+  export HISTFILE=$HOME/Dropbox/dev/bash_eternal_history_mac.txt
+elif [[ "$unamestr" == 'Linux' ]]; then
+  export HISTFILE=$HOME/Dropbox/dev/bash_eternal_history_linux.txt
+fi
+
+
 # Force prompt to write history after every command.
 # http://superuser.com/questions/20900/bash-history-loss
 
