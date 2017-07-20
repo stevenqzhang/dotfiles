@@ -188,7 +188,7 @@ export HISTTIMEFORMAT="[%F %T] "
 if [[ "$unamestr" == 'Darwin' ]]; then
   export HISTFILE=$HOME/Dropbox/dev/bash_eternal_history_mac.txt
 elif [[ "$unamestr" == 'Linux' ]]; then
-  export HISTFILE=$HOME/Dropbox/dev/bash_eternal_history_linux.txt
+  export HISTFILE=$HOME/dev/bash_eternal_history_linux.txt
 fi
 
 
