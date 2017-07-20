@@ -200,6 +200,10 @@ PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 # Mac specifics
 if [[ "$unamestr" == 'Darwin' ]]; then
 
+# for homebrew installed nvm
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
+
 # bashcompletion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
 	      . $(brew --prefix)/etc/bash_completion
