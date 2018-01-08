@@ -89,7 +89,8 @@ alias gs='git status --untracked-files=no'
 alias gd='git diff'
 alias gk='gitk --all &'
 alias gb='git branch'
-alias ga='git add -u'
+alias ga='git add'
+alias gau='git add -u'
 alias gl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'--all"
 alias gl2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 
@@ -114,6 +115,9 @@ alias sd='cd -'
 alias init='source ~/dev/dotfiles/.bashrc'
 alias ls='ls -GFh'
 alias grep='grep --color=always' 
+
+# other
+alias gw='./gradlew'
 
 # for unblocking freedom
 if [[ "$unamestr" == 'Darwin' ]]; then
@@ -210,6 +214,10 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 fi
+
+# git bash completion
+source /usr/local/etc/bash_completion.d/git-completion.bash
+
 
 # Path variable changes
 # sublime as app
