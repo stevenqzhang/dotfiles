@@ -158,15 +158,20 @@ elif [[ "$unamestr" == 'Linux' ]]; then
   export PROMPT_COMMAND='echo -ne "\033]0;🐧${PWD##*/}\007"'
 fi
 
+# show git branch
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 # Set the PS1 prompt (with colors).
 # Based on http://www-128.ibm.com/developerworks/linux/library/l-tip-prompt/
 # And http://networking.ringofsaturn.com/Unix/Bash-prompts.php .
 # http://ezprompt.net/
 if [[ "$unamestr" == 'Darwin' ]]; then
-  export PS1="\[\e[00;33m\]\u\[\e[0m\]\[\e[00;37m\]@\h:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \D{%T} \n$ "
+  export PS1="\[\e[00;33m\]\u\[\e[0m\]\[\e[00;37m\]@\h:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \033[33m\]\$(parse_git_branch)\[\033[00m\] \D{%T} \n$ "
 elif [[ "$unamestr" == 'Linux' ]]; then
   #extremely different colors for linux so I don't confuse myself when SSH'ing
-  export PS1="\[\e[00;32m\] 🐧 \u\[\e[0m\]\[\e[00;45m\]@\h:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \D{%T} \n$ "
+  export PS1="\[\e[00;32m\] 🐧 \u\[\e[0m\]\[\e[00;45m\]@\h:\[\e[0m\]\[\e[00;36m\]\w\[\e[0m\]\[\e[00;37m\] \[\e[0m\] \033[33m\]\$(parse_git_branch)\[\033[00m\] \D{%T} \n$ "
 fi
 
 # Set the default editor to vim.
